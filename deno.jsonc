@@ -7,5 +7,8 @@
   ],
   "fmt": {
     "semiColons": false
+  },
+  "tasks":{
+    "example:1": "deno run -A --watch=main/,libs/,test/ test/example-1.ts"
   }
 }
