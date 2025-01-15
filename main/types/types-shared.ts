@@ -1,0 +1,9 @@
+export type is_tabSet = "is_tabSet";
+export type is_tabMap = "is_tabMap";
+export type is_oneSet = "is_oneSet";
+export type is_oneMap = "is_oneMap";
+export type isInvalid = "isInvalid";
+export type oneSet<K> = Set<K>;
+export type oneMap<K, V> = Map<K, V>;
+export type tabSet<K> = [oneSet<K>, oneSet<K>];
+export type tabMap<K, V> = [oneMap<K, V>, oneMap<K, V>];
