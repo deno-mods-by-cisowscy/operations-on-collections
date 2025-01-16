@@ -1,0 +1,113 @@
+
+jeszcze nie w pełni zaimplenetowałem użycie #emptyAsNull w klasie "Sheet" i "AbstractSheet"
+
+
+W KLASIE Sheet 1 argument w knstruktorze to "emptyAsNull"
+który przekazuje dla settera z klasy "AbstractSheet" początkowe ustawienie w inicjowanej instancji
+"this.EmptyAsNull = emptyAsNull" 
+
+Dodaj też dla klasy "Sheet"  metodę toggleEmptyAsNull
+która w istniejącej już instancji dokona konwersji typu 
+
+
+
+Testując:
+
+console.log(sheetTwoMap_string_number);
+OTRZYMUJĘ:
+-----------------------------------
+Sheet {
+  A_Key: Set(4) { "A", "B", "C", "D" },
+  B_Key: Set(4) { "A", "B", "C", "D" },
+  A_Map: Map(4) { "A" => 1, "B" => 2, "C" => 3, "D" => 4 },
+  B_Map: Map(4) { "A" => 1, "B" => 2, "C" => 3, "D" => 4 }
+}
+-----------------------------------
+JEST TO OCZEKIWANY REZULTAT ZARÓWNO DLA this.EemptyAsNull == true; JAK I this.EemptyAsNull == false;
+
+
+
+console.log(sheetOneMap_string_object);
+OTRZYMUJĘ:
+-----------------------------------
+Sheet {
+  A_Key: Set(3) { 1, 2, 4 },
+  B_Key: Set(0) {},
+  A_Map: Map(3) { 1 => { a: true }, 2 => { a: false }, 4 => { a: true } },
+  B_Map: null
+}
+-----------------------------------
+JEŻELI this.EemptyAsNull == true,  OCZEKUJĘ:
+-----------------------------------
+    Sheet {
+    A_Key: Set(3) { 1, 2, 4 },
+    B_Key: null,
+    A_Map: Map(3) { 1 => { a: true }, 2 => { a: false }, 4 => { a: true } },
+    B_Map: null
+}
+-----------------------------------
+JEŻELI this.EemptyAsNull == false,  OCZEKUJĘ:
+-----------------------------------
+    Sheet {
+    A_Key: Set(3) { 1, 2, 4 },
+    B_Key: Set(0) {},
+    A_Map: Map(3) { 1 => { a: true }, 2 => { a: false }, 4 => { a: true } },
+    B_Map: Map(0) {}
+}
+-----------------------------------
+-----------------------------------
+
+
+console.log(sheetTwoSet_string);
+OTRZYMUJĘ:
+-----------------------------------
+    Sheet {
+    A_Key: Set(4) { "apple", "banana", "mango", "cherry" },
+    B_Key: Set(4) { "apple", "banana", "mango", "cherry" },
+    A_Map: null,
+    B_Map: null
+}
+-----------------------------------
+JEST TO OCZEKIWANY REZULTAT ZARÓWNO DLA this.EemptyAsNull == true;
+NATOMIAST DLA this.EemptyAsNull == false; OCZEKUJĘ
+-----------------------------------
+    Sheet {
+    A_Key: Set(4) { "apple", "banana", "mango", "cherry" },
+    B_Key: Set(4) { "apple", "banana", "mango", "cherry" },
+    A_Map: Map(0) {},
+    B_Map: Map(0) {}
+}
+-----------------------------------
+-----------------------------------
+
+
+
+console.log(sheetOneSet_number);
+OTRZYMUJĘ:
+-----------------------------------
+Sheet {
+  A_Key: Set(5) { 1, 2, 4, 6, 8 },
+  B_Key: Set(0) {},
+  A_Map: null,
+  B_Map: null
+}
+-----------------------------------
+DLA this.EemptyAsNull == true; OCZEKUJĘ
+-----------------------------------
+Sheet {
+  A_Key: Set(5) { 1, 2, 4, 6, 8 },
+  B_Key: null,
+  A_Map: null,
+  B_Map: null
+}
+-----------------------------------
+DLA this.EemptyAsNull == false; OCZEKUJĘ
+-----------------------------------
+Sheet {
+  A_Key: Set(5) { 1, 2, 4, 6, 8 },
+  B_Key: Set(0) {},
+  A_Map: Map(0) {},
+  B_Map: Map(0) {}
+}
+-----------------------------------
+-----------------------------------
